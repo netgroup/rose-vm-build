@@ -2,8 +2,8 @@
   "builders": [
     {
       "type": "vagrant",
-      "source_path": "debian/contrib-buster64",
-      "box_name" : "rose-beta",    
+      "source_path": "bento/debian-10.2",
+      "box_name" : "rose-beta",      
       "communicator": "ssh",
       "provider": "virtualbox",
       "add_force": true

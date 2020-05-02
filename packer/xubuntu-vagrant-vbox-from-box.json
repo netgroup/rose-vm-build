@@ -1,0 +1,20 @@
+{
+  "builders": [
+    {
+      "type": "vagrant",
+      "communicator": "ssh",
+      "source_path": "./package.box",
+      "box_name" : "rose-beta1",      
+      "provider": "virtualbox",
+      "add_force": true
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "./start-xubuntu-vagrant-vbox-from-box.sh"
+    }
+  ]
+}
+
+
