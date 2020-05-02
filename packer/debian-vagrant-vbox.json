@@ -1,0 +1,11 @@
+{
+  "builders": [
+    {
+      "type": "vagrant",
+      "source_path": "bento/debian-10.2",
+      "communicator": "ssh",
+      "provider": "virtualbox",
+      "add_force": true
+    }
+  ]
+}
