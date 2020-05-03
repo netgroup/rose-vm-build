@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=check-status
+Comment=
+Exec=/home/rose/workspace/rose-vm/scripts/git_status_all.sh
+Icon=/home/rose/.rose/rose-vm-build/initial-setup/icons-images/rose-icon-question.png
+Path=
+Terminal=true
+StartupNotify=false
