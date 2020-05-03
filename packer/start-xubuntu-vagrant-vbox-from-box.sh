@@ -1,16 +1,28 @@
 #!/bin/bash
 
-VBOX_GA_VER = "6.1.6"
-
+# Update apt
 sudo apt-get update
-sudo apt-get install -y linux-headers-$(uname -r) build-essential dkms
 
-wget "http://download.virtualbox.org/virtualbox/$VBOX_GA_VER/VBoxGuestAdditions_$VBOX_GA_VER.iso"
-sudo mkdir /media/VBoxGuestAdditions
-sudo mount -o loop,ro "VBoxGuestAdditions_$VBOX_GA_VER.iso" /media/VBoxGuestAdditions
-sudo sh /media/VBoxGuestAdditions/VBoxLinuxAdditions.run
-rm "VBoxGuestAdditions_$VBOX_GA_VER.iso"
-sudo umount /media/VBoxGuestAdditions
-sudo rmdir /media/VBoxGuestAdditions
+sudo apt autoremove -y
+
+sudo apt-get install -y git-core
+
+git config --global user.email "rose_project@rose_project.org"
+git config --global user.name "The ROSE project"
+
+echo -e "\n\n#####################################"
+echo -e "\n-Installing bison"
+# Install bison
+sudo apt-get install -y bison
 
 
+echo -e "\n\n#####################################"
+echo -e "\n-Installing flex"
+# Install flex
+sudo apt-get install -y flex
+
+# Install sublime evaluation version
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+sudo apt-get update
+sudo apt-get install -y sublime-text
