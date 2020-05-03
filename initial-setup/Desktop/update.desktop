@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=update
+Comment=
+Exec=/home/rose/workspace/rose-vm/update_all.sh
+Icon=/home/rose/workspace/rose-vm/icons/rose_download.png
+Path=
+Terminal=true
+StartupNotify=false
