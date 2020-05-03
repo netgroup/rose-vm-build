@@ -1,1 +1,3 @@
 *.sh text eol=lf
+upload_folder/exo-terminal-emulator.desktop text eol=lf
+upload_folder/xfce4-desktop.xml text eol=lf

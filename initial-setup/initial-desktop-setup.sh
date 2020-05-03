@@ -1,9 +1,9 @@
 #!/bin/bash
 
 HOME_DIR=$HOME
+
 WORKSPACE_DIR="$HOME_DIR/workspace"
 MININET_DIR="$HOME_DIR/mininet"
-ROSE_SYS_DIR="$HOME_DIR/.rose"
 
 # Update apt
 sudo apt-get update
@@ -32,23 +32,12 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 sudo apt-get update
 sudo apt-get install -y sublime-text
 
+cp /tmp/upload_folder/exo-terminal-emulator.desktop "$HOME_DIR/Desktop"
+chmod 755 "$HOME_DIR/Desktop/exo-terminal-emulator.desktop"
 
-mkdir -p $WORKSPACE_DIR
-mkdir -p $ROSE_SYS_DIR
+sudo cp /tmp/upload_folder/xubuntu-focal-rose.png /usr/share/xfce4/backdrops/
 
-cd $WORKSPACE_DIR
-
-# Clone rose vm repo
-git clone https://github.com/netgroup/rose-vm.git
-cd rose-vm
-
-# Clone all other repos
-./scripts/update_all_body.sh clone_repos
-
-# Initial setup of ROSE desktop environment
-$ROSE_SYS_DIR/rose-vm-build/initial-setup/initial_desktop_setup.sh
-
-
+cp /tmp/upload_folder/xfce4-desktop.xml "$HOME_DIR/.config/xfce4/xfconf/xfce-perchannel-xml/"
 
 
 

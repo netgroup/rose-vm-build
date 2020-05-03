@@ -11,6 +11,10 @@
   ],
   "provisioners": [
     {
+      "type": "file",
+      "source": "upload_folder/",
+      "destination": "/tmp"    }
+    {
       "type": "shell",
       "script": "./start-xubuntu-vagrant-vbox-from-box.sh"
     }
