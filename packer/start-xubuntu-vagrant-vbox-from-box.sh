@@ -32,7 +32,7 @@ sudo apt-get install -y sudo
 
 # Install sublime evaluation version
 echo -e "\n\n#####################################"
-echo -e "\n-Installing flex"
+echo -e "\n-Installing sublime evaluation version"
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 sudo apt-get update
@@ -56,15 +56,22 @@ mkdir -p $ROSE_SYS_DIR
 cd $WORKSPACE_DIR
 
 # Clone rose vm repo
+echo -e "\n\n#####################################"
+echo -e "\n-Clone rose-vm repo"
 git clone https://github.com/netgroup/rose-vm.git
 cd rose-vm
 
 # Clone all other repos
+echo -e "\n\n#####################################"
+echo -e "\n-Clone all other repos"
 chmod +x "$WORKSPACE_DIR/rose-vm/scripts/update_all_body.sh"
 "$WORKSPACE_DIR/rose-vm/scripts/update_all_body.sh" clone_repos
 
 # Initial setup of ROSE desktop environment
-"$ROSE_SYS_DIR/rose-vm-build/initial-setup/initial_desktop_setup.sh"
+echo -e "\n\n#####################################"
+echo -e "\n-Initial setup of ROSE desktop environment"
+chmod +x "$ROSE_SYS_DIR/rose-vm-build/initial-setup/initial-desktop-setup.sh"
+"$ROSE_SYS_DIR/rose-vm-build/initial-setup/initial-desktop-setup.sh"
 
 
 
