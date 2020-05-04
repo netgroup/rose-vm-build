@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOME_DIR=$HOME
+HOME_DIR="$HOME"
 WORKSPACE_DIR="$HOME_DIR/workspace"
 MININET_DIR="$HOME_DIR/mininet"
 ROSE_SYS_DIR="$HOME_DIR/.rose"
