@@ -16,6 +16,10 @@ useradd -m -p $(openssl passwd -1 vagrant) -s /bin/bash -c vagrant vagrant
 echo "vagrant        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers.d/vagrant
 chmod 0440 /etc/sudoers.d/vagrant
 
+# User rose needs to sudo without password
+echo "rose        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers.d/rose
+chmod 0440 /etc/sudoers.d/rose
+
 # Installing vagrant keys
 mkdir -pm 700 /home/vagrant/.ssh
 wget --no-check-certificate 'https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant.pub' -O /home/vagrant/.ssh/authorized_keys
@@ -25,7 +29,7 @@ chown -R vagrant /home/vagrant/.ssh
 # Customize the message of the day
 echo 'Welcome to the ROSE project VM.' > /etc/motd
 
-# this is for mininet
+# This is for mininet
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 echo "root:root" | chpasswd
