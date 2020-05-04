@@ -46,8 +46,9 @@ sudo apt-get install -y tcpdump
 # Install wireshark
 echo -e "\n\n#####################################"
 echo -e "\n-Installing wireshark"
+DEBIAN_FRONTEND=noninteractive
 sudo apt-get install -y wireshark
-
+DEBIAN_FRONTEND=
 
 mkdir -p $WORKSPACE_DIR
 mkdir -p $ROSE_SYS_DIR
@@ -59,10 +60,11 @@ git clone https://github.com/netgroup/rose-vm.git
 cd rose-vm
 
 # Clone all other repos
-$WORKSPACE_DIR/rose-vm/scripts/update_all_body.sh clone_repos
+chmod +x "$WORKSPACE_DIR/rose-vm/scripts/update_all_body.sh"
+"$WORKSPACE_DIR/rose-vm/scripts/update_all_body.sh" clone_repos
 
 # Initial setup of ROSE desktop environment
-$ROSE_SYS_DIR/rose-vm-build/initial-setup/initial_desktop_setup.sh
+"$ROSE_SYS_DIR/rose-vm-build/initial-setup/initial_desktop_setup.sh"
 
 
 
