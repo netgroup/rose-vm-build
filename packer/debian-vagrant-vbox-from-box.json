@@ -2,9 +2,9 @@
   "builders": [
     {
       "type": "vagrant",
+      "communicator": "ssh",
       "source_path": "debian/contrib-buster64",
       "box_name" : "rose-beta",    
-      "communicator": "ssh",
       "provider": "virtualbox",
       "add_force": true
     }
@@ -12,10 +12,7 @@
   "provisioners": [
     {
         "type": "shell",
-        "inline":[
-	        "sleep 30",
-	        "sudo apt-get update"
-        ]
+        "script": "./start-debian-vagrant-vbox-from-box.sh"
     }
   ]
 
