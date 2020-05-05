@@ -4,7 +4,7 @@
       "type": "vagrant",
       "communicator": "ssh",
       "source_path": "./rose-srv6-xubuntu-base.box",
-      "box_name" : "rose-beta1",      
+      "box_name" : "rose-v2.0",      
       "provider": "virtualbox",
       "add_force": true
     }
