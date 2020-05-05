@@ -1,6 +1,19 @@
 #!/bin/bash
 # run this script as root
 
+# This is the first script executed after the installation from .iso
+# It prepares the VM for Vagrant and Virtualbox, intalls and configure ssh
+# installs VboxGuestAddition
+
+# It needs to be stored in:
+# https://raw.githubusercontent.com/netgroup/rose-vm-build/master/packer/base-xubuntu-prepare-for-vagrant.sh
+# its shortcut is: https://tinyurl.com/rose-startup
+
+# It is used as follows:
+# wget https://tinyurl.com/rose-startup -O ini.sh
+# sudo su; chmod +x ini.sh; ./ini.sh
+
+
 #Virtualbox guest additions version
 VBOX_GA_VER="6.1.6"
 
