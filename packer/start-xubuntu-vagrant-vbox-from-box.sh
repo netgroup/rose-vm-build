@@ -6,7 +6,9 @@ echo "rose        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers.d/rose
 chmod 0440 /etc/sudoers.d/rose
 EOF
 
-sudo -i -u rose bash << EOF
+sudo -u rose bash << EOF
+
+echo "HOME=$HOME"
 
 HOME_DIR="$HOME"
 WORKSPACE_DIR="$HOME_DIR/workspace"
