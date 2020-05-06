@@ -48,9 +48,9 @@ sudo apt-get install -y tcpdump
 # Install wireshark
 echo -e "\n\n#####################################"
 echo -e "\n-Installing wireshark"
-DEBIAN_FRONTEND=noninteractive
+#DEBIAN_FRONTEND=noninteractive
 sudo apt-get install -y wireshark
-DEBIAN_FRONTEND=
+#DEBIAN_FRONTEND=
 
 mkdir -p $WORKSPACE_DIR
 mkdir -p $ROSE_SYS_DIR
