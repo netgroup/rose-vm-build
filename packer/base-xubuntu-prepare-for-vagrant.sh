@@ -47,6 +47,9 @@ sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd
 
 echo "root:root" | chpasswd
 
+#disable auto upgrades
+sed -i 's/APT::Periodic::Update-Package-Lists "1";/APT::Periodic::Update-Package-Lists "0";/' /etc/apt/apt.conf.d/20auto-upgrades
+
 # In order to keep SSH speedy even when your machine or the Vagrant machine is not connected to the internet
 sed -i 's/#UseDNS no/UseDNS no/' /etc/ssh/sshd_config
 
