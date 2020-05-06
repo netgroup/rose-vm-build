@@ -45,12 +45,19 @@ echo -e "\n\n#####################################"
 echo -e "\n-Installing tcpdump"
 sudo apt-get install -y tcpdump
 
+# Install debconf-utils
+echo -e "\n\n#####################################"
+echo -e "\n-Installing debconf-utils"
+sudo apt-get install -y debconf-utils
+
+echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
+
 # Install wireshark
 echo -e "\n\n#####################################"
 echo -e "\n-Installing wireshark"
-#DEBIAN_FRONTEND=noninteractive
+DEBIAN_FRONTEND=noninteractive
 sudo apt-get install -y wireshark
-#DEBIAN_FRONTEND=
+DEBIAN_FRONTEND=
 
 mkdir -p $WORKSPACE_DIR
 mkdir -p $ROSE_SYS_DIR
