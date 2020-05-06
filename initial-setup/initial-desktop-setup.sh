@@ -1,8 +1,6 @@
 #!/bin/bash
 # Initial desktop setup
 
-sudo -i -u rose bash << EOF
-
 HOME_DIR=$HOME
 WORKSPACE_DIR="$HOME_DIR/workspace"
 MININET_DIR="$HOME_DIR/mininet"
@@ -41,5 +39,3 @@ cp "$WORKSPACE_DIR/rose-vm/vm-docs/$ROSE_VM_DESKTOP_FILE_NAME" $HOME_DIR/Desktop
 
 # TODO (?) : stop icon
 #cp $WORKSPACE_DIR/Mantoo-scripts-and-readme/VM-Desktop/stop-v2.desktop $HOME_DIR/Desktop/
-
-EOF
