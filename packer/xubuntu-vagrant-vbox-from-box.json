@@ -11,6 +11,11 @@
   ],
   "provisioners": [
     {
+      "type": "file",
+      "source": "./execute-xubuntu-vagrant-vbox-from-box.sh",
+      "destination": "/tmp/execute-xubuntu-vagrant-vbox-from-box.sh"    
+    },
+    {
       "type": "shell",
       "script": "./start-xubuntu-vagrant-vbox-from-box.sh"
     }
