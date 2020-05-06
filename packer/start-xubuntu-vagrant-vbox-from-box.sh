@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo su rose
+sudo -i -u rose bash << EOF
 
 HOME_DIR="$HOME"
 WORKSPACE_DIR="$HOME_DIR/workspace"
@@ -66,12 +66,6 @@ mkdir -p $ROSE_SYS_DIR
 
 cd $WORKSPACE_DIR
 
-echo $WORKSPACE_DIR
-echo $WORKSPACE_DIR
-echo $WORKSPACE_DIR
-echo $WORKSPACE_DIR
-
-
 # Clone rose vm repo
 echo -e "\n\n#####################################"
 echo -e "\n-Clone rose-vm repo"
@@ -93,7 +87,7 @@ echo -e "\n-Initial setup of ROSE desktop environment"
 chmod +x "$ROSE_SYS_DIR/rose-vm-build/initial-setup/initial-desktop-setup.sh"
 "$ROSE_SYS_DIR/rose-vm-build/initial-setup/initial-desktop-setup.sh"
 
-
+EOF
 
 
 
