@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo su rose
+
 HOME_DIR="$HOME"
 WORKSPACE_DIR="$HOME_DIR/workspace"
 MININET_DIR="$HOME_DIR/mininet"
