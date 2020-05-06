@@ -7,8 +7,17 @@ chmod 0440 /etc/sudoers.d/rose
 EOF
 
 sudo -u rose bash << EOF
-
+#!/bin/bash
 echo "HOME=$HOME"
+
+PLUTO="$HOME"
+echo "PLUTO=$PLUTO"
+
+PAPERINO="paperino"
+echo "PAPERINO=$PAPERINO"
+
+export PIPPO="pippo"
+echo "$PIPPO"
 
 HOME_DIR="$HOME"
 WORKSPACE_DIR="$HOME_DIR/workspace"
@@ -19,7 +28,7 @@ echo "HOME=$HOME"
 echo "HOME_DIR=$HOME_DIR"
 echo "WORKSPACE_DIR=$WORKSPACE_DIR"
 
-export TERM=linux
+export TERM="linux"
 
 # Update apt
 sudo apt-get update
