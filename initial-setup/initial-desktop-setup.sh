@@ -8,6 +8,9 @@ WORKSPACE_DIR="$HOME_DIR/workspace"
 MININET_DIR="$HOME_DIR/mininet"
 ROSE_SYS_DIR="$HOME_DIR/.rose"
 
+echo $HOME_DIR
+echo $HOME_DIR
+
 ROSE_VM_DESKTOP_FILE_NAME="ROSE-v2.0"
 
 cd $ROSE_SYS_DIR/rose-vm-build/initial-setup/

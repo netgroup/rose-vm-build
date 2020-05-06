@@ -66,6 +66,12 @@ mkdir -p $ROSE_SYS_DIR
 
 cd $WORKSPACE_DIR
 
+echo $WORKSPACE_DIR
+echo $WORKSPACE_DIR
+echo $WORKSPACE_DIR
+echo $WORKSPACE_DIR
+
+
 # Clone rose vm repo
 echo -e "\n\n#####################################"
 echo -e "\n-Clone rose-vm repo"
@@ -75,6 +81,8 @@ cd rose-vm
 # Clone all other repos
 echo -e "\n\n#####################################"
 echo -e "\n-Clone all other repos"
+
+
 chmod +x "$WORKSPACE_DIR/rose-vm/scripts/update_all.sh"
 chmod +x "$WORKSPACE_DIR/rose-vm/scripts/update_all_body.sh"
 "$WORKSPACE_DIR/rose-vm/scripts/update_all_body.sh" clone_repos
