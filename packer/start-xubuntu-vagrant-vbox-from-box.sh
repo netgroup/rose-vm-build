@@ -13,6 +13,10 @@ WORKSPACE_DIR="$HOME_DIR/workspace"
 MININET_DIR="$HOME_DIR/mininet"
 ROSE_SYS_DIR="$HOME_DIR/.rose"
 
+echo "HOME=$HOME"
+echo "HOME_DIR=$HOME_DIR"
+echo "WORKSPACE_DIR=$WORKSPACE_DIR"
+
 export TERM=linux
 
 # Update apt
@@ -67,8 +71,8 @@ DEBIAN_FRONTEND=noninteractive
 sudo apt-get install -y wireshark
 DEBIAN_FRONTEND=
 
-mkdir -p $WORKSPACE_DIR
-mkdir -p $ROSE_SYS_DIR
+mkdir -p "$WORKSPACE_DIR"
+mkdir -p "$ROSE_SYS_DIR"
 
 cd $WORKSPACE_DIR
 
