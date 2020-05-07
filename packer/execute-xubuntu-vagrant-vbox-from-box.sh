@@ -14,11 +14,11 @@ echo "WORKSPACE_DIR=$WORKSPACE_DIR"
 export TERM="linux"
 
 # Update apt
-sudo apt-get update
+sudo apt update
 
 sudo apt autoremove -y
 
-sudo apt-get install -y git-core
+sudo apt install -y git-core
 
 git config --global user.email "rose_project@rose_project.org"
 git config --global user.name "The ROSE project"
@@ -26,17 +26,17 @@ git config --global user.name "The ROSE project"
 # Install bison
 echo -e "\n\n#####################################"
 echo -e "\n-Installing bison"
-sudo apt-get install -y bison
+sudo apt install -y bison
 
 # Install flex
 echo -e "\n\n#####################################"
 echo -e "\n-Installing flex"
-sudo apt-get install -y flex
+sudo apt install -y flex
 
 # Install sudo
 echo -e "\n\n#####################################"
 echo -e "\n-Installing sudo"
-sudo apt-get install -y sudo
+sudo apt install -y sudo
 
 # Install curl
 echo -e "\n\n#####################################"
@@ -64,18 +64,18 @@ echo -e "\n\n#####################################"
 echo -e "\n-Installing sublime evaluation version"
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-sudo apt-get update
-sudo apt-get install -y sublime-text
+sudo apt update
+sudo apt install -y sublime-text
 
 # Install tcpdump
 echo -e "\n\n#####################################"
 echo -e "\n-Installing tcpdump"
-sudo apt-get install -y tcpdump
+sudo apt install -y tcpdump
 
 # Install debconf-utils
 echo -e "\n\n#####################################"
 echo -e "\n-Installing debconf-utils"
-sudo apt-get install -y debconf-utils
+sudo apt install -y debconf-utils
 
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
 
@@ -83,12 +83,12 @@ echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debc
 echo -e "\n\n#####################################"
 echo -e "\n-Installing wireshark"
 DEBIAN_FRONTEND=noninteractive
-sudo apt-get install -y wireshark
+sudo apt install -y wireshark
 DEBIAN_FRONTEND=
 
 # Install docker
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
+sudo apt install -y docker.io
+sudo systemctl enable --now docker
 sudo usermod -aG docker "$ROSE_USER"
 
 
