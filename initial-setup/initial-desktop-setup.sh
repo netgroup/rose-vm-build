@@ -1,15 +1,20 @@
 #!/bin/bash
 # Initial desktop setup
+echo -e "\n\n*****************************"
+echo -e "\n-Initial desktop setup"
+
 
 HOME_DIR=$HOME
 WORKSPACE_DIR="$HOME_DIR/workspace"
 MININET_DIR="$HOME_DIR/mininet"
 ROSE_SYS_DIR="$HOME_DIR/.rose"
 
-echo $HOME_DIR
-echo $HOME_DIR
-
 ROSE_VM_DESKTOP_FILE_NAME="ROSE-v2.0"
+
+
+echo "HOME=$HOME"
+echo "HOME_DIR=$HOME_DIR"
+echo "WORKSPACE_DIR=$WORKSPACE_DIR"
 
 cd $ROSE_SYS_DIR/rose-vm-build/initial-setup/
 

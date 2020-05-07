@@ -1,15 +1,6 @@
 #!/bin/bash
 
-echo "HOME=$HOME"
-
-PLUTO="$HOME"
-echo "PLUTO=$PLUTO"
-
-PAPERINO="paperino"
-echo "PAPERINO=$PAPERINO"
-
-export PIPPO="pippo"
-echo "$PIPPO"
+ROSE_USER="rose"
 
 HOME_DIR="$HOME"
 WORKSPACE_DIR="$HOME_DIR/workspace"
@@ -74,6 +65,12 @@ DEBIAN_FRONTEND=noninteractive
 sudo apt-get install -y wireshark
 DEBIAN_FRONTEND=
 
+# Install docker
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo usermod -aG docker "$ROSE_USER"
+
+
 mkdir -p "$WORKSPACE_DIR"
 mkdir -p "$ROSE_SYS_DIR"
 
@@ -100,4 +97,7 @@ echo -e "\n-Initial setup of ROSE desktop environment"
 chmod +x "$ROSE_SYS_DIR/rose-vm-build/initial-setup/initial-desktop-setup.sh"
 "$ROSE_SYS_DIR/rose-vm-build/initial-setup/initial-desktop-setup.sh"
 
+# End of setup
+echo -e "\n\n#####################################"
+echo -e "\n-End of setup"
 
