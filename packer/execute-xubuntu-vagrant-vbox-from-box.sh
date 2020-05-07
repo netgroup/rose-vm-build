@@ -38,6 +38,27 @@ echo -e "\n\n#####################################"
 echo -e "\n-Installing sudo"
 sudo apt-get install -y sudo
 
+# Install curl
+echo -e "\n\n#####################################"
+echo -e "\n-Installing curl"
+sudo apt install -y curl
+
+# Install wget
+echo -e "\n\n#####################################"
+echo -e "\n-Installing wget"
+sudo apt install -y wget
+
+
+# Install Chrome
+echo -e "\n\n#####################################"
+echo -e "\n-Installing Chrome"
+
+sudo apt install -y gdebi-core
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo gdebi -n google-chrome-stable_current_amd64.deb
+rm google-chrome-stable_current_amd64.deb
+
+
 # Install sublime evaluation version
 echo -e "\n\n#####################################"
 echo -e "\n-Installing sublime evaluation version"
