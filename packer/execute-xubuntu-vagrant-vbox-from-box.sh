@@ -9,11 +9,15 @@ MININET_DIR="$HOME_DIR/mininet"
 ROSE_SYS_DIR="$HOME_DIR/.rose"
 ROSE_SYS_INITIAL_SETUP="$ROSE_SYS_DIR/rose-vm-build/initial-setup"
 
+# possible values for FRRVER: frr-6 frr-7 frr-stable
+# frr-stable will be the latest official stable release
+FRRVER="frr-stable"
+
+export TERM="linux"
+
 echo "HOME=$HOME"
 echo "HOME_DIR=$HOME_DIR"
 echo "WORKSPACE_DIR=$WORKSPACE_DIR"
-
-export TERM="linux"
 
 # Update apt
 sudo apt update
@@ -89,9 +93,23 @@ sudo apt install -y wireshark
 DEBIAN_FRONTEND=
 
 # Install docker
+echo -e "\n\n#####################################"
+echo -e "\n-Installing docker"
 sudo apt install -y docker.io
 sudo systemctl enable --now docker
 sudo usermod -aG docker "$ROSE_USER"
+
+# Install FRR
+echo -e "\n\n#####################################"
+echo -e "\n-Installing FRR"
+# add GPG key
+wget https://deb.frrouting.org/frr/keys.asc 
+sudo apt-key add keys.asc
+rm keys.asc
+echo deb https://deb.frrouting.org/frr $(lsb_release -s -c) $FRRVER | sudo tee -a /etc/apt/sources.list.d/frr.list
+# update and install FRR
+sudo apt update && sudo apt -y install frr frr-pythontools
+
 
 
 mkdir -p "$WORKSPACE_DIR"
