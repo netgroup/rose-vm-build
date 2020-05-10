@@ -1,0 +1,17 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-vm",
+      "communicator": "ssh",
+      "vm_name": "rose-srv6-vmware",
+      "shutdown_command": "sudo systemctl poweroff -i",
+      "format": "ova",
+      "guest_additions_mode": "disable",
+      "boot_wait": "45s",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant"
+    }
+  ]
+}
+
+
