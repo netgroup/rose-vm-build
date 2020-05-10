@@ -13,6 +13,10 @@ ROSE_SYS_INITIAL_SETUP="$ROSE_SYS_DIR/rose-vm-build/initial-setup"
 # frr-stable will be the latest official stable release
 FRRVER="frr-stable"
 
+# NB: FRR is not yet released for "focal" release
+#RELEASE=$(lsb_release -s -c)
+RELEASE="bionic"
+
 export TERM="linux"
 
 echo "HOME=$HOME"
@@ -106,7 +110,7 @@ echo -e "\n-Installing FRR"
 wget https://deb.frrouting.org/frr/keys.asc 
 sudo apt-key add keys.asc
 rm keys.asc
-echo deb https://deb.frrouting.org/frr $(lsb_release -s -c) $FRRVER | sudo tee -a /etc/apt/sources.list.d/frr.list
+echo deb https://deb.frrouting.org/frr $RELEASE $FRRVER | sudo tee -a /etc/apt/sources.list.d/frr.list
 # update and install FRR
 sudo apt update && sudo apt -y install frr frr-pythontools
 
