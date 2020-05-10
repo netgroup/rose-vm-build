@@ -97,6 +97,12 @@ mkdir -p "$ROSE_SYS_DIR"
 
 cd $WORKSPACE_DIR
 
+# during the build phase, the rose-vm repo is cloned with
+# the explicit clone command
+# then all the other repos are cloned using the script
+# update_all_body.sh clone_repos
+# which has been just cloned
+
 # Clone rose vm repo
 echo -e "\n\n#####################################"
 echo -e "\n-Clone rose-vm repo"
