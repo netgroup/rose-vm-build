@@ -114,8 +114,7 @@ echo -e "\n\n#####################################"
 echo -e "\n-Clone all other repos"
 
 
-chmod +x "$WORKSPACE_DIR/rose-vm/scripts/update_all.sh"
-chmod +x "$WORKSPACE_DIR/rose-vm/scripts/update_all_body.sh"
+chmod +x "$WORKSPACE_DIR/rose-vm/scripts/*"
 "$WORKSPACE_DIR/rose-vm/scripts/update_all_body.sh" clone_repos
 
 # Initial setup of ROSE desktop environment
