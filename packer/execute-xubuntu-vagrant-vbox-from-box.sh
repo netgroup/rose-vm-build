@@ -4,8 +4,10 @@ ROSE_USER="rose"
 
 HOME_DIR="$HOME"
 WORKSPACE_DIR="$HOME_DIR/workspace"
+ROSE_VM_SCRIPTS="$WORKSPACE_DIR/rose-vm/scripts"
 MININET_DIR="$HOME_DIR/mininet"
 ROSE_SYS_DIR="$HOME_DIR/.rose"
+ROSE_SYS_INITIAL_SETUP="$ROSE_SYS_DIR/rose-vm-build/initial-setup"
 
 echo "HOME=$HOME"
 echo "HOME_DIR=$HOME_DIR"
@@ -114,14 +116,15 @@ echo -e "\n\n#####################################"
 echo -e "\n-Clone all other repos"
 
 
-chmod +x "$WORKSPACE_DIR/rose-vm/scripts/*"
-"$WORKSPACE_DIR/rose-vm/scripts/update_all_body.sh" clone_repos
+find "$ROSE_VM_SCRIPTS" -type f -exec chmod +x {} \;
+"$ROSE_VM_SCRIPTS/update_all_body.sh" clone_repos
+
 
 # Initial setup of ROSE desktop environment
 echo -e "\n\n#####################################"
 echo -e "\n-Initial setup of ROSE desktop environment"
-chmod +x "$ROSE_SYS_DIR/rose-vm-build/initial-setup/initial-desktop-setup.sh"
-"$ROSE_SYS_DIR/rose-vm-build/initial-setup/initial-desktop-setup.sh"
+find "$ROSE_SYS_INITIAL_SETUP" -type f -name "*.sh" -exec chmod +x {} \;
+"$ROSE_SYS_INITIAL_SETUP/initial-desktop-setup.sh"
 
 # End of setup
 echo -e "\n\n#####################################"

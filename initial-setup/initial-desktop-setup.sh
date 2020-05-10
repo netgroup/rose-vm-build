@@ -9,7 +9,7 @@ WORKSPACE_DIR="$HOME_DIR/workspace"
 MININET_DIR="$HOME_DIR/mininet"
 ROSE_SYS_DIR="$HOME_DIR/.rose"
 
-ROSE_VM_DESKTOP_FILE_NAME="ROSE-v2.0"
+ROSE_VM_DESKTOP_FILE_NAME_PREFIX="ROSE-v"
 
 
 echo "HOME=$HOME"
@@ -37,7 +37,7 @@ chmod +x "$HOME_DIR/Desktop/wireshark.desktop"
 cd $HOME_DIR
 
 ln -s "$WORKSPACE_DIR/rose-vm/vm-docs/ROSE-VM-README.txt" "$HOME_DIR/Desktop/README.txt"
-cp "$WORKSPACE_DIR/rose-vm/vm-docs/$ROSE_VM_DESKTOP_FILE_NAME" $HOME_DIR/Desktop/
+find "$WORKSPACE_DIR/rose-vm/vm-docs/" -type f -name "$ROSE_VM_DESKTOP_FILE_NAME_PREFIX*" -exec cp {} "$HOME_DIR/Desktop/" \;
 
 # TODO : go icon
 #cp $WORKSPACE_DIR/Mantoo-scripts-and-readme/VM-Desktop/go-v2.desktop $HOME_DIR/Desktop/
