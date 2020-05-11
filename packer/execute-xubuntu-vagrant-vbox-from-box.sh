@@ -25,6 +25,9 @@ echo "WORKSPACE_DIR=$WORKSPACE_DIR"
 
 cd $HOME_DIR
 
+mkdir -p "$WORKSPACE_DIR"
+mkdir -p "$ROSE_SYS_DIR"
+
 # Update apt
 sudo apt update
 
@@ -117,6 +120,7 @@ echo -e "\n-Installing Mininet"
 sudo apt install -y mininet
 sudo ln -s /usr/bin/xfce4-terminal /usr/bin/gnome-terminal
 
+cd $WORKSPACE_DIR
 
 # Install FRR
 echo -e "\n\n#####################################"
@@ -202,8 +206,6 @@ rm frr-7.3.1.zip
 
 
 
-mkdir -p "$WORKSPACE_DIR"
-mkdir -p "$ROSE_SYS_DIR"
 
 cd $WORKSPACE_DIR
 
