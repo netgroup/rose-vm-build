@@ -120,7 +120,8 @@ echo -e "\n-Installing Mininet"
 sudo apt install -y mininet
 sudo ln -s /usr/bin/xfce4-terminal /usr/bin/gnome-terminal
 
-cd $WORKSPACE_DIR
+#cd $WORKSPACE_DIR
+cd $HOME_DIR
 
 # Install FRR
 echo -e "\n\n#####################################"
