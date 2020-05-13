@@ -120,6 +120,24 @@ echo -e "\n-Installing Mininet"
 sudo apt install -y mininet
 sudo ln -s /usr/bin/xfce4-terminal /usr/bin/gnome-terminal
 
+
+# Install vim
+echo -e "\n\n#####################################"
+echo -e "\n-Installing vim"
+sudo apt install -y vim
+
+
+# Install python3-venv
+echo -e "\n\n#####################################"
+echo -e "\n-Installing python3-venv"
+sudo apt install -y python3-venv
+# Create virtual environment
+python3 -m venv .venv
+# source
+echo -e "\nsourcing"
+echo "source .venv/bin/activate" >> .bashrc
+source /home/rose/.venv/bin/activate
+
 #cd $WORKSPACE_DIR
 cd $HOME_DIR
 
