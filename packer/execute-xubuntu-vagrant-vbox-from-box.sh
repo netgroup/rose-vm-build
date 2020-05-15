@@ -133,18 +133,14 @@ echo -e "\n-Installing python3-venv"
 sudo apt install -y python3-venv
 # Create virtual environment for user rose
 python3 -m venv .rose-venv
-# source rose-venv as default
-echo -e "\nsourcing rose-venv for user rose"
-echo "source .rose-venv/bin/activate" >> .bashrc
-source /home/rose/.rose-venv/bin/activate
 # create virtual environments for user root
 sudo python3 -m venv /root/.mininet-venv
 sudo python3 -m venv /root/.controller-venv
 sudo python3 -m venv /root/.node-mgr-venv
-# source controller-venv as default
-echo -e "\nsourcing mininet-venv for user root"
-sudo echo "source .mininet-venv/bin/activate" >> /root/.bashrc
-sudo source /root/.mininet-venv/bin/activate
+# source rose-venv as default
+echo -e "\nsourcing rose-venv for user rose"
+echo "source .rose-venv/bin/activate" >> .bashrc
+source /home/rose/.rose-venv/bin/activate
 
 #cd $WORKSPACE_DIR
 cd $HOME_DIR
