@@ -143,9 +143,8 @@ sudo python3 -m venv /root/.controller-venv
 sudo python3 -m venv /root/.node-mgr-venv
 # source controller-venv as default
 echo -e "\nsourcing mininet-venv for user root"
-echo "source .mininet-venv/bin/activate" >> /root/.bashrc
-source /root/.mininet-venv/bin/activate
-
+sudo echo "source .mininet-venv/bin/activate" >> /root/.bashrc
+sudo source /root/.mininet-venv/bin/activate
 
 #cd $WORKSPACE_DIR
 cd $HOME_DIR
