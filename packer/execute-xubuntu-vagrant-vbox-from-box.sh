@@ -120,6 +120,32 @@ echo -e "\n-Installing Mininet"
 sudo apt install -y mininet
 sudo ln -s /usr/bin/xfce4-terminal /usr/bin/gnome-terminal
 
+
+# Install vim
+echo -e "\n\n#####################################"
+echo -e "\n-Installing vim"
+sudo apt install -y vim
+
+
+# Install python3-venv
+echo -e "\n\n#####################################"
+echo -e "\n-Installing python3-venv"
+sudo apt install -y python3-venv
+# Create virtual environment for user rose
+python3 -m venv .rose-venv
+# create virtual environments for user root
+sudo python3 -m venv /root/.mininet-venv
+sudo python3 -m venv /root/.controller-venv
+sudo python3 -m venv /root/.node-mgr-venv
+# copy activate_this.py script to root venv folders
+sudo cp $ROSE_SYS_INITIAL_SETUP/activate_this.py /root/.mininet-venv/bin
+sudo cp $ROSE_SYS_INITIAL_SETUP/activate_this.py /root/.controller-venv/bin
+sudo cp $ROSE_SYS_INITIAL_SETUP/activate_this.py /root/.node-mgr-venv/bin
+# source rose-venv as default
+echo -e "\nsourcing rose-venv for user rose"
+echo "source .rose-venv/bin/activate" >> .bashrc
+source /home/rose/.rose-venv/bin/activate
+
 #cd $WORKSPACE_DIR
 cd $HOME_DIR
 
