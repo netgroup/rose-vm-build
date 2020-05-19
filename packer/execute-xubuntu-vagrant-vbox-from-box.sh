@@ -137,6 +137,10 @@ python3 -m venv .rose-venv
 sudo python3 -m venv /root/.mininet-venv
 sudo python3 -m venv /root/.controller-venv
 sudo python3 -m venv /root/.node-mgr-venv
+# copy activate_this.py script to root venv folders
+sudo cp $ROSE_SYS_INITIAL_SETUP/activate_this.py /root/.mininet-venv/bin
+sudo cp $ROSE_SYS_INITIAL_SETUP/activate_this.py /root/.controller-venv/bin
+sudo cp $ROSE_SYS_INITIAL_SETUP/activate_this.py /root/.node-mgr-venv/bin
 # source rose-venv as default
 echo -e "\nsourcing rose-venv for user rose"
 echo "source .rose-venv/bin/activate" >> .bashrc
