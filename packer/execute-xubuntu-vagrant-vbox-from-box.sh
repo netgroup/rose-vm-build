@@ -8,7 +8,7 @@ ROSE_VM_SCRIPTS="$WORKSPACE_DIR/rose-vm/scripts"
 MININET_DIR="$HOME_DIR/mininet"
 ROSE_SYS_DIR="$HOME_DIR/.rose"
 ROSE_SYS_INITIAL_SETUP="$ROSE_SYS_DIR/rose-vm-build/initial-setup"
-VENV_PATH="$HOME/envs"
+VENV_PATH="$HOME/.envs"
 
 # possible values for FRRVER: frr-6 frr-7 frr-stable
 # frr-stable will be the latest official stable release
@@ -109,6 +109,11 @@ sudo apt install -y docker.io
 sudo systemctl enable --now docker
 sudo usermod -aG docker "$ROSE_USER"
 
+# Install python2
+echo -e "\n\n#####################################"
+echo -e "\n-Installing python2"
+sudo apt install -y python
+
 # Install python3
 echo -e "\n\n#####################################"
 echo -e "\n-Installing python3"
@@ -128,10 +133,12 @@ echo -e "\n-Installing vim"
 sudo apt install -y vim
 
 # Create virtual environments
-python3 -m venv $VENV_PATH/.rose-venv
-python3 -m venv $VENV_PATH/.mininet-venv
-python3 -m venv $VENV_PATH/.controller-venv
-python3 -m venv $VENV_PATH/.node-mgr-venv
+echo -e "\n\n#####################################"
+echo -e "\n-Creating virtual environments"
+python3 -m venv $VENV_PATH/rose-venv
+python3 -m venv $VENV_PATH/mininet-venv
+python3 -m venv $VENV_PATH/controller-venv
+python3 -m venv $VENV_PATH/node-mgr-venv
 
 #cd $WORKSPACE_DIR
 cd $HOME_DIR
