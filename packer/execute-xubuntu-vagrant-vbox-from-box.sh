@@ -34,7 +34,7 @@ sudo apt update
 
 sudo apt autoremove -y
 
-sudo apt install -y git-core
+sudo apt-get install -y git-core
 
 git config --global user.email "rose_project@rose_project.org"
 git config --global user.name "The ROSE project"
@@ -42,34 +42,34 @@ git config --global user.name "The ROSE project"
 # Install bison
 echo -e "\n\n#####################################"
 echo -e "\n-Installing bison"
-sudo apt install -y bison
+sudo apt-get install -y bison
 
 # Install flex
 echo -e "\n\n#####################################"
 echo -e "\n-Installing flex"
-sudo apt install -y flex
+sudo apt-get install -y flex
 
 # Install sudo
 echo -e "\n\n#####################################"
 echo -e "\n-Installing sudo"
-sudo apt install -y sudo
+sudo apt-get install -y sudo
 
 # Install curl
 echo -e "\n\n#####################################"
 echo -e "\n-Installing curl"
-sudo apt install -y curl
+sudo apt-get install -y curl
 
 # Install wget
 echo -e "\n\n#####################################"
 echo -e "\n-Installing wget"
-sudo apt install -y wget
+sudo apt-get install -y wget
 
 
 # Install Chrome
 echo -e "\n\n#####################################"
 echo -e "\n-Installing Chrome"
 
-sudo apt install -y gdebi-core
+sudo apt-get install -y gdebi-core
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo gdebi -n google-chrome-stable_current_amd64.deb
 rm google-chrome-stable_current_amd64.deb
@@ -81,17 +81,17 @@ echo -e "\n-Installing sublime evaluation version"
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 sudo apt update
-sudo apt install -y sublime-text
+sudo apt-get install -y sublime-text
 
 # Install tcpdump
 echo -e "\n\n#####################################"
 echo -e "\n-Installing tcpdump"
-sudo apt install -y tcpdump
+sudo apt-get install -y tcpdump
 
 # Install debconf-utils
 echo -e "\n\n#####################################"
 echo -e "\n-Installing debconf-utils"
-sudo apt install -y debconf-utils
+sudo apt-get install -y debconf-utils
 
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
 
@@ -99,25 +99,25 @@ echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debc
 echo -e "\n\n#####################################"
 echo -e "\n-Installing wireshark"
 DEBIAN_FRONTEND=noninteractive
-sudo apt install -y wireshark
+sudo apt-get install -y wireshark
 DEBIAN_FRONTEND=
 
 # Install docker
 echo -e "\n\n#####################################"
 echo -e "\n-Installing docker"
-sudo apt install -y docker.io
+sudo apt-get install -y docker.io
 sudo systemctl enable --now docker
 sudo usermod -aG docker "$ROSE_USER"
 
 # Install python2
 echo -e "\n\n#####################################"
 echo -e "\n-Installing python2"
-sudo apt install -y python
+sudo apt-get install -y python
 
 # Install python3
 echo -e "\n\n#####################################"
 echo -e "\n-Installing python3"
-sudo apt install -y python3
+sudo apt-get install -y python3
 
 # Install python3-venv
 echo -e "\n\n#####################################"
@@ -127,19 +127,19 @@ sudo apt-get install -y python3-venv
 # Install python3-pip
 echo -e "\n\n#####################################"
 echo -e "\n-Installing python3-pip"
-sudo apt-get install python3-pip
+sudo apt-get install -y python3-pip
 
 # Install Mininet
 echo -e "\n\n#####################################"
 echo -e "\n-Installing Mininet"
-sudo apt install -y mininet
+sudo apt-get install -y mininet
 sudo ln -s /usr/bin/xfce4-terminal /usr/bin/gnome-terminal
 
 
 # Install vim
 echo -e "\n\n#####################################"
 echo -e "\n-Installing vim"
-sudo apt install -y vim
+sudo apt-get install -y vim
 
 # Create virtual environments
 echo -e "\n\n#####################################"
@@ -169,7 +169,7 @@ echo -e "\n-Installing FRR"
 wget https://github.com/FRRouting/frr/archive/frr-7.3.1.zip
 unzip frr-7.3.1.zip
 cd frr-frr-7.3.1
-sudo apt install -y dh-autoreconf
+sudo apt-get install -y dh-autoreconf
 ./bootstrap.sh
 
 sudo groupadd -r -g 92 frr
@@ -178,13 +178,13 @@ sudo adduser --system --ingroup frr --home /var/run/frr/ \
    --gecos "FRR suite" --shell /sbin/nologin frr
 sudo usermod -a -G frrvty frr
 
-sudo apt install -y \
+sudo apt-get install -y \
 git autoconf automake libtool make libreadline-dev texinfo \
 pkg-config libpam0g-dev libjson-c-dev bison flex python3-pytest \
 libc-ares-dev python3-dev libsystemd-dev python-ipaddress python3-sphinx \
 install-info build-essential libsystemd-dev libsnmp-dev perl libcap-dev
 
-sudo apt install -y libyang-dev
+sudo apt-get install -y libyang-dev
 
 ./configure \
     --prefix=/usr \
@@ -250,6 +250,7 @@ echo -e "\n\n#####################################"
 echo -e "\n-Clone rose-vm repo"
 git clone https://github.com/netgroup/rose-vm.git
 cd rose-vm
+git pull
 
 # Clone all other repos
 echo -e "\n\n#####################################"
