@@ -119,6 +119,15 @@ echo -e "\n\n#####################################"
 echo -e "\n-Installing python3"
 sudo apt install -y python3
 
+# Install python3-venv
+echo -e "\n\n#####################################"
+echo -e "\n-Installing python3-venv"
+sudo apt-get install -y python3-venv
+
+# Install python3-pip
+echo -e "\n\n#####################################"
+echo -e "\n-Installing python3-pip"
+sudo apt-get install python3-pip
 
 # Install Mininet
 echo -e "\n\n#####################################"
