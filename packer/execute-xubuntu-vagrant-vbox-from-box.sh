@@ -134,10 +134,10 @@ sudo apt-get install -y vim
 # Create virtual environments
 echo -e "\n\n#####################################"
 echo -e "\n-Creating virtual environments"
-python3 -m venv $VENV_PATH/rose-venv
-python3 -m venv $VENV_PATH/mininet-venv
-python3 -m venv $VENV_PATH/controller-venv
-python3 -m venv $VENV_PATH/node-mgr-venv
+python3 -m venv "$VENV_PATH"/rose-venv
+python3 -m venv "$VENV_PATH"/mininet-venv
+python3 -m venv "$VENV_PATH"/controller-venv
+python3 -m venv "$VENV_PATH"/node-mgr-venv
 
 #cd $WORKSPACE_DIR
 cd "$HOME_DIR" || { echo "Failure"; exit 1; }
