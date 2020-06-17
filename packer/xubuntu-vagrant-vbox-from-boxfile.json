@@ -6,6 +6,8 @@
       "source_path": "./rose-srv6-xubuntu-base.box",
       "box_name" : "rosevm/xubuntu-local",
       "provider": "virtualbox",
+	    "ssh_username": "rose",
+      "ssh_password": "1234",
       "add_force": true
     }
   ],
