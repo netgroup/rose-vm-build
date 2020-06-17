@@ -19,8 +19,13 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    - name: Shell Linter
+    - name: Shell Linter on packer dir
       uses: azohra/shell-linter@v0.4.0
       with:
           path: "packer/*.sh"
+
+    - name: Shell Linter on initial-setup dir
+      uses: azohra/shell-linter@v0.4.0
+      with:
+          path: "initial-setup/*.sh"
       
