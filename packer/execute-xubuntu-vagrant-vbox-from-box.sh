@@ -169,16 +169,16 @@ sudo apt-get install -y libyang-dev
 
 ./configure \
     --prefix=/usr \
-    --includedir="${prefix}"/include \
-    --enable-exampledir="${prefix}"/share/doc/frr/examples \
-    --bindir="${prefix}"/bin \
-    --sbindir="${prefix}"/lib/frr \
-    --libdir="${prefix}"/lib/frr \
-    --libexecdir="${prefix}"/lib/frr \
+    --includedir=/usr/include \
+    --enable-exampledir=/usr/share/doc/frr/examples \
+    --bindir=/usr/bin \
+    --sbindir=/usr/lib/frr \
+    --libdir=/usr/lib/frr \
+    --libexecdir=/usr/lib/frr \
     --localstatedir=/var/run/frr \
     --sysconfdir=/etc/frr \
-    --with-moduledir="${prefix}"/lib/frr/modules \
-    --with-libyang-pluginsdir="${prefix}"/lib/frr/libyang_plugins \
+    --with-moduledir=/usr/lib/frr/modules \
+    --with-libyang-pluginsdir=/usr/lib/frr/libyang_plugins \
     --enable-configfile-mask=0640 \
     --enable-logfile-mask=0640 \
     --enable-snmp=agentx \
