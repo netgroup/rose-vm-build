@@ -25,7 +25,7 @@ apt-get install -y openssh-server
 date > /etc/vagrant_box_build_time
 
 # Add vagrant user with password vagrant
-useradd -m -p $(openssl passwd -1 vagrant) -s /bin/bash -c vagrant vagrant
+useradd -m -p "$(openssl passwd -1 vagrant)" -s /bin/bash -c vagrant vagrant
 echo "vagrant        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers.d/vagrant
 chmod 0440 /etc/sudoers.d/vagrant
 
@@ -34,7 +34,8 @@ echo "rose        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers.d/rose
 chmod 0440 /etc/sudoers.d/rose
 
 # Installing vagrant keys
-mkdir -pm 700 /home/vagrant/.ssh
+mkdir -p /home/vagrant/.ssh
+chmod 700 /home/vagrant/.ssh
 wget --no-check-certificate 'https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant.pub' -O /home/vagrant/.ssh/authorized_keys
 chmod 0600 /home/vagrant/.ssh/authorized_keys
 chown -R vagrant /home/vagrant/.ssh
@@ -55,7 +56,7 @@ sed -i 's/#UseDNS no/UseDNS no/' /etc/ssh/sshd_config
 
 service ssh restart
 
-apt-get install -y linux-headers-$(uname -r) gcc build-essential dkms
+apt-get install -y linux-headers-"$(uname -r)" gcc build-essential dkms
 
 wget "http://download.virtualbox.org/virtualbox/$VBOX_GA_VER/VBoxGuestAdditions_$VBOX_GA_VER.iso"
 mkdir /media/VBoxGuestAdditions

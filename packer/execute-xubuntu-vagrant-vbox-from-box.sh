@@ -5,18 +5,11 @@ ROSE_USER="rose"
 HOME_DIR="$HOME"
 WORKSPACE_DIR="$HOME_DIR/workspace"
 ROSE_VM_SCRIPTS="$WORKSPACE_DIR/rose-vm/scripts"
-MININET_DIR="$HOME_DIR/mininet"
+
 ROSE_SYS_DIR="$HOME_DIR/.rose"
 ROSE_SYS_INITIAL_SETUP="$ROSE_SYS_DIR/rose-vm-build/initial-setup"
 VENV_PATH="$HOME/.envs"
 
-# possible values for FRRVER: frr-6 frr-7 frr-stable
-# frr-stable will be the latest official stable release
-FRRVER="frr-stable"
-
-# NB: FRR is not yet released for "focal" release
-#RELEASE=$(lsb_release -s -c)
-RELEASE="bionic"
 
 export TERM="linux"
 
@@ -24,7 +17,7 @@ echo "HOME=$HOME"
 echo "HOME_DIR=$HOME_DIR"
 echo "WORKSPACE_DIR=$WORKSPACE_DIR"
 
-cd $HOME_DIR
+cd "$HOME_DIR" || { echo "Failure"; exit 1; }
 
 mkdir -p "$WORKSPACE_DIR"
 mkdir -p "$ROSE_SYS_DIR"
@@ -64,7 +57,6 @@ echo -e "\n\n#####################################"
 echo -e "\n-Installing wget"
 sudo apt-get install -y wget
 
-
 # Install Chrome
 echo -e "\n\n#####################################"
 echo -e "\n-Installing Chrome"
@@ -73,7 +65,6 @@ sudo apt-get install -y gdebi-core
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo gdebi -n google-chrome-stable_current_amd64.deb
 rm google-chrome-stable_current_amd64.deb
-
 
 # Install sublime evaluation version
 echo -e "\n\n#####################################"
@@ -98,9 +89,9 @@ echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debc
 # Install wireshark
 echo -e "\n\n#####################################"
 echo -e "\n-Installing wireshark"
-DEBIAN_FRONTEND=noninteractive
-sudo apt-get install -y wireshark
-DEBIAN_FRONTEND=
+
+DEBIAN_FRONTEND=noninteractive sudo apt-get install -y wireshark
+
 
 # Install docker
 echo -e "\n\n#####################################"
@@ -135,7 +126,6 @@ echo -e "\n-Installing Mininet"
 sudo apt-get install -y mininet
 sudo ln -s /usr/bin/xfce4-terminal /usr/bin/gnome-terminal
 
-
 # Install vim
 echo -e "\n\n#####################################"
 echo -e "\n-Installing vim"
@@ -144,60 +134,51 @@ sudo apt-get install -y vim
 # Create virtual environments
 echo -e "\n\n#####################################"
 echo -e "\n-Creating virtual environments"
-python3 -m venv $VENV_PATH/rose-venv
-python3 -m venv $VENV_PATH/mininet-venv
-python3 -m venv $VENV_PATH/controller-venv
-python3 -m venv $VENV_PATH/node-mgr-venv
+python3 -m venv "$VENV_PATH"/rose-venv
+python3 -m venv "$VENV_PATH"/mininet-venv
+python3 -m venv "$VENV_PATH"/controller-venv
+python3 -m venv "$VENV_PATH"/node-mgr-venv
 
 #cd $WORKSPACE_DIR
-cd $HOME_DIR
+cd "$HOME_DIR" || { echo "Failure"; exit 1; }
 
 # Install FRR
 echo -e "\n\n#####################################"
 echo -e "\n-Installing FRR"
 
-# # Install from package
-# # add GPG key
-# wget https://deb.frrouting.org/frr/keys.asc 
-# sudo apt-key add keys.asc
-# rm keys.asc
-# echo deb https://deb.frrouting.org/frr $RELEASE $FRRVER | sudo tee -a /etc/apt/sources.list.d/frr.list
-# # update and install FRR
-# sudo apt update && sudo apt -y install frr frr-pythontools
-
 # Install from source
 wget https://github.com/FRRouting/frr/archive/frr-7.3.1.zip
 unzip frr-7.3.1.zip
-cd frr-frr-7.3.1
+cd frr-frr-7.3.1 || { echo "Failure"; exit 1; }
 sudo apt-get install -y dh-autoreconf
 ./bootstrap.sh
 
 sudo groupadd -r -g 92 frr
 sudo groupadd -r -g 85 frrvty
 sudo adduser --system --ingroup frr --home /var/run/frr/ \
-   --gecos "FRR suite" --shell /sbin/nologin frr
+    --gecos "FRR suite" --shell /sbin/nologin frr
 sudo usermod -a -G frrvty frr
 
 sudo apt-get install -y \
-git autoconf automake libtool make libreadline-dev texinfo \
-pkg-config libpam0g-dev libjson-c-dev bison flex python3-pytest \
-libc-ares-dev python3-dev libsystemd-dev python-ipaddress python3-sphinx \
-install-info build-essential libsystemd-dev libsnmp-dev perl libcap-dev
+    git autoconf automake libtool make libreadline-dev texinfo \
+    pkg-config libpam0g-dev libjson-c-dev bison flex python3-pytest \
+    libc-ares-dev python3-dev libsystemd-dev python-ipaddress python3-sphinx \
+    install-info build-essential libsystemd-dev libsnmp-dev perl libcap-dev
 
 sudo apt-get install -y libyang-dev
 
 ./configure \
     --prefix=/usr \
-    --includedir=\${prefix}/include \
-    --enable-exampledir=\${prefix}/share/doc/frr/examples \
-    --bindir=\${prefix}/bin \
-    --sbindir=\${prefix}/lib/frr \
-    --libdir=\${prefix}/lib/frr \
-    --libexecdir=\${prefix}/lib/frr \
+    --includedir=/usr/include \
+    --enable-exampledir=/usr/share/doc/frr/examples \
+    --bindir=/usr/bin \
+    --sbindir=/usr/lib/frr \
+    --libdir=/usr/lib/frr \
+    --libexecdir=/usr/lib/frr \
     --localstatedir=/var/run/frr \
     --sysconfdir=/etc/frr \
-    --with-moduledir=\${prefix}/lib/frr/modules \
-    --with-libyang-pluginsdir=\${prefix}/lib/frr/libyang_plugins \
+    --with-moduledir=/usr/lib/frr/modules \
+    --with-libyang-pluginsdir=/usr/lib/frr/libyang_plugins \
     --enable-configfile-mask=0640 \
     --enable-logfile-mask=0640 \
     --enable-snmp=agentx \
@@ -231,13 +212,10 @@ sudo apt-get install -y libyang-dev
 make
 sudo make install
 
-cd ..
+cd .. || { echo "Failure"; exit 1; }
 rm frr-7.3.1.zip
 
-
-
-
-cd $WORKSPACE_DIR
+cd "$WORKSPACE_DIR" || { echo "Failure"; exit 1; }
 
 # during the build phase, the rose-vm repo is cloned with
 # the explicit clone command
@@ -249,17 +227,15 @@ cd $WORKSPACE_DIR
 echo -e "\n\n#####################################"
 echo -e "\n-Clone rose-vm repo"
 git clone https://github.com/netgroup/rose-vm.git
-cd rose-vm
+cd rose-vm || { echo "Failure"; exit 1; }
 git pull
 
 # Clone all other repos
 echo -e "\n\n#####################################"
 echo -e "\n-Clone all other repos"
 
-
 find "$ROSE_VM_SCRIPTS" -type f -exec chmod +x {} \;
 "$ROSE_VM_SCRIPTS/update_all_body.sh" clone_repos
-
 
 # Initial setup of ROSE desktop environment
 echo -e "\n\n#####################################"
@@ -270,4 +246,3 @@ find "$ROSE_SYS_INITIAL_SETUP" -type f -name "*.sh" -exec chmod +x {} \;
 # End of setup
 echo -e "\n\n#####################################"
 echo -e "\n-End of setup"
-
