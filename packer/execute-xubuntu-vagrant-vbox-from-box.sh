@@ -142,7 +142,7 @@ python3 -m venv "$VENV_PATH"/node-mgr-venv
 # Install wheel package
 echo -e "\n\n#####################################"
 echo -e "\n-Installing wheel"
-source "$VENV_PATH"rose-venv/bin/activate; pip install wheel; deactivate
+source "$VENV_PATH"/rose-venv/bin/activate; pip install wheel; deactivate
 source "$VENV_PATH"/mininet-venv/bin/activate; pip install wheel; deactivate
 source "$VENV_PATH"/controller-venv/bin/activate; pip install wheel; deactivate
 source "$VENV_PATH"/node-mgr-venv/bin/activate; pip install wheel; deactivate
