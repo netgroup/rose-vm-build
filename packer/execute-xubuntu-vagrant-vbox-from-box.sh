@@ -139,6 +139,22 @@ python3 -m venv "$VENV_PATH"/mininet-venv
 python3 -m venv "$VENV_PATH"/controller-venv
 python3 -m venv "$VENV_PATH"/node-mgr-venv
 
+# Install wheel package
+echo -e "\n\n#####################################"
+echo -e "\n-Installing wheel"
+# activate scripts are generated a run-time, therefore it is not possible
+# to validate them with shellcheck. We need to disable the check SC1090
+# in order to avoid annoying warnings "Can't follow non-constant source"
+#
+# shellcheck source=/dev/null
+source "$VENV_PATH"/rose-venv/bin/activate; pip install wheel; deactivate
+# shellcheck source=/dev/null
+source "$VENV_PATH"/mininet-venv/bin/activate; pip install wheel; deactivate
+# shellcheck source=/dev/null
+source "$VENV_PATH"/controller-venv/bin/activate; pip install wheel; deactivate
+# shellcheck source=/dev/null
+source "$VENV_PATH"/node-mgr-venv/bin/activate; pip install wheel; deactivate
+
 #cd $WORKSPACE_DIR
 cd "$HOME_DIR" || { echo "Failure"; exit 1; }
 
