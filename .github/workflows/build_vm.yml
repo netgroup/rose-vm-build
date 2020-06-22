@@ -22,6 +22,5 @@ jobs:
 
       - name: Run packer Build
         run: |
-            cd packer
-            docker run -it --mount type=bind,source=xubuntu-vagrant-vbox-from-boxfile.json,target=/mnt/xubuntu-vagrant-vbox-from-boxfile.json \
-              hashicorp/packer:latest build /mnt/xubuntu-vagrant-vbox-from-boxfile.json
+          cd packer
+          packer build xubuntu-vagrant-vbox-from-boxfile.json
