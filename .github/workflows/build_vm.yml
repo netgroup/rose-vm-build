@@ -18,9 +18,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Download rose-srv6-xubuntu-base.box
-        run: wget ${{ secrets.BASE_BOX_URL}}
-
-      - name: Run packer Build
         run: |
           cd packer
+          wget ${{ secrets.BASE_BOX_URL}}
+
+      - name: Run packer Build
+        run: 
           packer build xubuntu-vagrant-vbox-from-boxfile.json
