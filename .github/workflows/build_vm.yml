@@ -23,5 +23,7 @@ jobs:
           wget ${{ secrets.BASE_BOX_URL}}
 
       - name: Run packer Build
-        run: 
+        run: |
+          pwd
+          cd packer
           packer build xubuntu-vagrant-vbox-from-boxfile.json
