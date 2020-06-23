@@ -20,7 +20,8 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v1
         with:
-          path: rose-srv6-xubuntu-base.box
+          path: base/rose-srv6-xubuntu-base.box
+          name: rose-srv6-xubuntu-base.box
   packer:
     needs: retrive-base-box
     runs-on: macos-latest
@@ -29,7 +30,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+      - name: Check files
+        run: ls -la
       - name: Download artifact result for build step
         uses: actions/download-artifact@v1
         with:
