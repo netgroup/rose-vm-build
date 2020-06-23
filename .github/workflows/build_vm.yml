@@ -34,6 +34,11 @@ jobs:
       - uses: actions/checkout@v2
       - name: Check files
         run: ls -la
+      - name: Checkout tools rose-vm
+        uses: actions/checkout@v2
+        with:
+          repository: netgroup/rose-vm
+          path: rose-vm
       - name: Download artifact result for build step
         uses: actions/download-artifact@v1
         with:
@@ -45,3 +50,22 @@ jobs:
           pwd
           cd packer
           packer build xubuntu-vagrant-vbox-from-boxfile.json
+          mkdir artifact
+          mv output-vagrant/package.box ../../rose-vm/vagrant-from-box-file/rosevm-xubuntu.box
+      - name: Run Vagrant up
+        run: |
+          pwd
+          cd ../rose-vm/vagrant-from-box-file/
+          vagrant up
+      - name: Run packer build ova
+        run: |
+          pwd
+          cd packer
+          packer build export-vbox.json
+          ls -laR
+
+      - name: Archive artifact vagrant box
+        uses: actions/upload-artifact@v1
+        with:
+          path: output-vagrant/
+          name: package.ova
