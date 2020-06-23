@@ -52,12 +52,13 @@ jobs:
           packer build xubuntu-vagrant-vbox-from-boxfile.json
           ls -laR
           mv output-vagrant/package.box ../rose-vm/vagrant-from-box-file/rosevm-xubuntu.box
-      - name: Run Vagrant up
+      - name: Run Vagrant up and take a snapshot
         run: |
           pwd
           ls -la
           cd rose-vm/vagrant-from-box-file/
           vagrant up
+          vagrant snapshot save default rose_snapshot
       - name: Run packer build ova
         run: |
           pwd
@@ -66,9 +67,8 @@ jobs:
           packer build export-vbox.json
           ls -laR
 
-
       - name: Archive artifact vagrant box
         uses: actions/upload-artifact@v1
         with:
-          path: packer/output-vagrant/package.ova
-          name: package.ova
+          path: packer/output-virtualbox-vm/rose-srv6.ova
+          name: rose-srv6.ova

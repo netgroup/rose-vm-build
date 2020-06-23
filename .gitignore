@@ -1,3 +1,4 @@
 output-vagrant*
+output-virtualbox-vm
 packer_cache/
 *.box

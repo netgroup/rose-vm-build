@@ -8,10 +8,8 @@
       "format": "ova",
       "guest_additions_mode": "disable",
       "boot_wait": "45s",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant"
+      "ssh_username": "rose",
+      "ssh_password": "1234"
     }
   ]
 }
-
-
