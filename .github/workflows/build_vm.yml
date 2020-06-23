@@ -56,19 +56,19 @@ jobs:
         run: |
           pwd
           ls -la
-          cd ../rose-vm/vagrant-from-box-file/
+          cd rose-vm/vagrant-from-box-file/
           vagrant up
       - name: Run packer build ova
         run: |
           pwd
-          ls-la
+          ls -la
           cd packer
           packer build export-vbox.json
-          ls -la
+          ls -laR
 
 
       - name: Archive artifact vagrant box
         uses: actions/upload-artifact@v1
         with:
-          path: output-vagrant/package.ova
+          path: packer/output-vagrant/package.ova
           name: package.ova
