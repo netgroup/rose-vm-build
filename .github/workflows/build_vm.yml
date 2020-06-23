@@ -48,7 +48,8 @@ jobs:
       - name: Run packer Build
         run: |
           pwd
-          ls -laR ../../
+          ls -la
+          ls -la ../
       # - name: Run Vagrant up
       #   run: |
       #     pwd
@@ -61,8 +62,8 @@ jobs:
       #     packer build export-vbox.json
       #     ls -laR
 
-      - name: Archive artifact vagrant box
-        uses: actions/upload-artifact@v1
-        with:
-          path: output-vagrant/
-          name: package.ova
+      # - name: Archive artifact vagrant box
+      #   uses: actions/upload-artifact@v1
+      #   with:
+      #     path: output-vagrant/
+      #     name: package.ova
