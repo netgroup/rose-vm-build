@@ -6,10 +6,9 @@
       "vm_name": "rose-srv6",
       "shutdown_command": "sudo systemctl poweroff -i",
       "format": "ova",
-      "guest_additions_mode": "disable",
       "boot_wait": "45s",
-      "ssh_username": "rose",
-      "ssh_password": "1234"
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant"
     }
   ]
 }

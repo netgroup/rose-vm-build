@@ -3,7 +3,7 @@
     {
       "type": "virtualbox-vm",
       "communicator": "ssh",
-      "vm_name": "rose-srv6-vmware",
+      "vm_name": "rose-srv6",
       "shutdown_command": "sudo systemctl poweroff -i",
       "format": "ova",
       "guest_additions_mode": "disable",

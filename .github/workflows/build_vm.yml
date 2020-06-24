@@ -58,7 +58,7 @@ jobs:
           ls -la
           cd rose-vm/vagrant-from-box-file/
           vagrant up
-          vagrant down
+          vagrant halt
           vagrant snapshot save default rose_snapshot
       - name: Run packer build ova
         run: |
