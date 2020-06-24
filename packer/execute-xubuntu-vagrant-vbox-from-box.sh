@@ -23,9 +23,11 @@ mkdir -p "$WORKSPACE_DIR"
 mkdir -p "$ROSE_SYS_DIR"
 
 # Update apt
-sudo apt-get update
+export DEBIAN_FRONTEND=noninteractive
+sudo apt-get update 
+sudo apt-get-o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade -y
 
-sudo apt-get upgrade -y
+
 
 sudo apt-get autoremove -y
 
