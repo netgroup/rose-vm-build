@@ -32,13 +32,16 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
       - name: Check files
         run: ls -la
+
       - name: Checkout tools rose-vm
         uses: actions/checkout@v2
         with:
           repository: netgroup/rose-vm
           path: rose-vm
+
       - name: Download artifact result for build step
         uses: actions/download-artifact@v1
         with:
@@ -52,24 +55,27 @@ jobs:
           packer build xubuntu-vagrant-vbox-from-boxfile.json
           ls -laR
           mv output-vagrant/package.box ../rose-vm/vagrant-from-box-file/rosevm-xubuntu.box
+
+      - name: Archive artifact vagrant box
+        uses: actions/upload-artifact@v1
+        with:
+          path: rose-vm/vagrant-from-box-file/
+          name: rosevm-xubuntu.box
+
       - name: Run Vagrant up and take a snapshot
         run: |
-          pwd
-          ls -la
           cd rose-vm/vagrant-from-box-file/
           vagrant up
           vagrant halt
           vagrant snapshot save default rose_snapshot
+
       - name: Run packer build ova
         run: |
-          pwd
-          ls -la
           cd packer
           packer build export-vbox.json
           zip -u rose-srv6  packer/output-virtualbox-vm/rose-srv6.ova
-          ls -laR
 
-      - name: Archive artifact vagrant box
+      - name: Archive artifact ova
         uses: actions/upload-artifact@v1
         with:
           path: packer/
