@@ -66,10 +66,11 @@ jobs:
           ls -la
           cd packer
           packer build export-vbox.json
+          zip -u rose-srv6  packer/output-virtualbox-vm/rose-srv6.ova
           ls -laR
 
       - name: Archive artifact vagrant box
         uses: actions/upload-artifact@v1
         with:
-          path: packer/output-virtualbox-vm/
-          name: rose-srv6.ova
+          path: packer/
+          name: rose-srv6.zip
