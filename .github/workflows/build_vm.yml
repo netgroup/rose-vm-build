@@ -20,7 +20,7 @@ jobs:
           ls -la
           pwd
       - name: Archive production artifacts
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           path: /home/runner/work/rose-vm-build/rose-vm-build/
           name: rose-srv6-xubuntu-base.box
@@ -57,9 +57,9 @@ jobs:
           mv output-vagrant/package.box ../rose-vm/vagrant-from-box-file/rosevm-xubuntu.box
 
       - name: Archive artifact vagrant box
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
-          path: rose-vm/vagrant-from-box-file/
+          path: rose-vm/vagrant-from-box-file/rosevm-xubuntu.box
           name: rosevm-xubuntu.box
 
       - name: Run Vagrant up and take a snapshot
@@ -73,10 +73,9 @@ jobs:
         run: |
           cd packer
           packer build export-vbox.json
-          zip -u rose-srv6  packer/output-virtualbox-vm/rose-srv6.ova
 
       - name: Archive artifact ova
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
-          path: packer/
-          name: rose-srv6.zip
+          name: rose-srv6.ova
+          path: packer/output-virtualbox-vm/rose-srv6.ova
