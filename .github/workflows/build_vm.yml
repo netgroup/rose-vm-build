@@ -55,11 +55,16 @@ jobs:
           packer build xubuntu-vagrant-vbox-from-boxfile.json
           ls -laR
           mv output-vagrant/package.box ../rose-vm/vagrant-from-box-file/rosevm-xubuntu.box
-
+          truncate -s 5M /tmp/test_file_5mb.txt
+      - name: Archive artifact test file 5mb
+        uses: actions/upload-artifact@v2
+        with:
+          path: /tmp/test_file_5mb.txt
+          name: test_file_5mb.txt
       - name: Archive artifact vagrant box
         uses: actions/upload-artifact@v2
         with:
-          path: rose-vm/vagrant-from-box-file/rosevm-xubuntu.box
+          path: rose-vm/vagrant-from-box-file/
           name: rosevm-xubuntu.box
 
       - name: Run Vagrant up and take a snapshot
