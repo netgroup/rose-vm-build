@@ -8,24 +8,24 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  retrive-base-box:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+  # retrive-base-box:
+  #   # The type of runner that the job will run on
+  #   runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - name: Download rose-srv6-xubuntu-base.box
-        run: |
-          wget ${{ secrets.BASE_BOX_URL}}
-          ls -la
-          pwd
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          path: /home/runner/work/rose-vm-build/rose-vm-build/
-          name: rose-srv6-xubuntu-base.box
+  #   # Steps represent a sequence of tasks that will be executed as part of the job
+  #   steps:
+  #     - name: Download rose-srv6-xubuntu-base.box
+  #       run: |
+  #         wget ${{ secrets.BASE_BOX_URL}}
+  #         ls -la
+  #         pwd
+  #     - name: Archive production artifacts
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         path: /home/runner/work/rose-vm-build/rose-vm-build/
+  #         name: rose-srv6-xubuntu-base.box
   packer:
-    needs: retrive-base-box
+    #needs: retrive-base-box
     runs-on: macos-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -33,8 +33,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Check files
-        run: ls -la
+      - name: Download rose-srv6-xubuntu-base.box
+        run: |
+          cd packer
+          wget ${{ secrets.BASE_BOX_URL}}
+          ls -la
+          pwd
 
       - name: Checkout tools rose-vm
         uses: actions/checkout@v2
@@ -42,11 +46,11 @@ jobs:
           repository: netgroup/rose-vm
           path: rose-vm
 
-      - name: Download artifact result for build step
-        uses: actions/download-artifact@v1
-        with:
-          name: rose-srv6-xubuntu-base.box
-          path: packer
+      # - name: Download artifact result for build step
+      #   uses: actions/download-artifact@v1
+      #   with:
+      #     name: rose-srv6-xubuntu-base.box
+      #     path: packer
 
       - name: Run packer Build
         run: |
