@@ -55,17 +55,22 @@ jobs:
           packer build xubuntu-vagrant-vbox-from-boxfile.json
           ls -laR
           mv output-vagrant/package.box ../rose-vm/vagrant-from-box-file/rosevm-xubuntu.box
+      
+      - name: Compress artifact
+        run: |
+          zip -r -X rosevm_xubuntu.zip rose-vm/vagrant-from-box-file/
           
-      - name: Archive artifact test file 5mb
-        uses: actions/upload-artifact@v2
-        with:
-          path: packer/base-xubuntu-prepare-for-vagrant.sh
-          name: small
+      # - name: Archive artifact test file 5mb
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     path: packer/base-xubuntu-prepare-for-vagrant.sh
+      #     name: small
+
       - name: Archive artifact vagrant box
         uses: actions/upload-artifact@v2
         with:
-          path: rose-vm/vagrant-from-box-file/
-          name: vagrant-from-box-file
+          path: rosevm_xubuntu.zip
+          name: rosevm_xubuntu
 
       - name: Run Vagrant up and take a snapshot
         run: |
@@ -78,9 +83,13 @@ jobs:
         run: |
           cd packer
           packer build export-vbox.json
+      
+      - name: Compress artifact
+        run: |
+          zip -r -X rosevm_xubuntu_ova.zip packer/output-virtualbox-vm/
 
       - name: Archive artifact ova
         uses: actions/upload-artifact@v2
         with:
-          name: rose-srv6.ova
-          path: packer/output-virtualbox-vm/rose-srv6.ova
+          path: packer/output-virtualbox-vm/rosevm_xubuntu_ova.zip
+          name: rosevm_xubuntu_ova
