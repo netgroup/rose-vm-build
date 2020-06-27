@@ -65,7 +65,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: rose-vm/vagrant-from-box-file/
-          name: rosevm-xubuntu.box
+          name: vagrant-from-box-file
 
       - name: Run Vagrant up and take a snapshot
         run: |
