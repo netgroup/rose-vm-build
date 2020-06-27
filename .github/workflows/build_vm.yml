@@ -59,8 +59,8 @@ jobs:
       - name: Archive artifact test file 5mb
         uses: actions/upload-artifact@v2
         with:
-          path: packer/
-          name: base-xubuntu-prepare-for-vagrant.sh
+          path: packer/base-xubuntu-prepare-for-vagrant.sh
+          name: small
       - name: Archive artifact vagrant box
         uses: actions/upload-artifact@v2
         with:
