@@ -70,7 +70,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: rosevm_xubuntu.zip
-          name: rosevm_xubuntu
+          name: rosevmxubuntu
 
       - name: Run Vagrant up and take a snapshot
         run: |
