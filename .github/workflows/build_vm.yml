@@ -77,7 +77,8 @@ jobs:
           swift --os-auth-url ${{ secrets.SWIFT_AUTH_URL }} \
             --os-application-credential-id ${{ secrets.SWIFT_APP_CRED_ID }} \
             --os-application-credential-secret ${{ secrets.SWIFT_APP_CRED_SECRET }} \
-            --os-auth-type v3applicationcredential upload rose/vm/github rose-vm/vagrant-from-box-file/rosevm-xubuntu.box --object-name rosevm-xubuntu.box
+            --os-auth-type v3applicationcredential upload rose/vm/github rose-vm/vagrant-from-box-file/rosevm-xubuntu.box \
+            --object-name rosevm-xubuntu.box -S 1073741824 -v --debug
           
       # - name: Archive artifact test file 5mb
       #   uses: actions/upload-artifact@v2
@@ -102,7 +103,8 @@ jobs:
           swift --os-auth-url ${{ secrets.SWIFT_AUTH_URL }} \
             --os-application-credential-id ${{ secrets.SWIFT_APP_CRED_ID }} \
             --os-application-credential-secret ${{ secrets.SWIFT_APP_CRED_SECRET }} \
-            --os-auth-type v3applicationcredential upload rose/vm/github packer/output-virtualbox-vm/rose-srv6.ova --object-name rose-srv6.ova
+            --os-auth-type v3applicationcredential upload rose/vm/github packer/output-virtualbox-vm/rose-srv6.ova \
+            --object-name rose-srv6.ova -S 1073741824 -v --debug
       
       # - name: Compress artifact
       #   run: |
