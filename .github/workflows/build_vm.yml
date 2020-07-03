@@ -8,22 +8,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # retrive-base-box:
-  #   # The type of runner that the job will run on
-  #   runs-on: ubuntu-latest
 
-  #   # Steps represent a sequence of tasks that will be executed as part of the job
-  #   steps:
-  #     - name: Download rose-srv6-xubuntu-base.box
-  #       run: |
-  #         wget ${{ secrets.BASE_BOX_URL}}
-  #         ls -la
-  #         pwd
-  #     - name: Archive production artifacts
-  #       uses: actions/upload-artifact@v2
-  #       with:
-  #         path: /home/runner/work/rose-vm-build/rose-vm-build/
-  #         name: rose-srv6-xubuntu-base.box
   packer:
     #needs: retrive-base-box
     runs-on: macos-latest
@@ -78,7 +63,7 @@ jobs:
             --os-application-credential-id ${{ secrets.SWIFT_APP_CRED_ID }} \
             --os-application-credential-secret ${{ secrets.SWIFT_APP_CRED_SECRET }} \
             --os-auth-type v3applicationcredential upload rose/vm/github rose-vm/vagrant-from-box-file/rosevm-xubuntu.box \
-            --object-name rosevm-xubuntu.box -S 1073741824 -v --debug
+            --object-name rosevm-xubuntu_slo.box -S 1073741824 --use-slo -v --debug
           
       # - name: Archive artifact test file 5mb
       #   uses: actions/upload-artifact@v2
@@ -104,7 +89,7 @@ jobs:
             --os-application-credential-id ${{ secrets.SWIFT_APP_CRED_ID }} \
             --os-application-credential-secret ${{ secrets.SWIFT_APP_CRED_SECRET }} \
             --os-auth-type v3applicationcredential upload rose/vm/github packer/output-virtualbox-vm/rose-srv6.ova \
-            --object-name rose-srv6.ova -S 1073741824 -v --debug
+            --object-name rose-srv6_slo.ova -S 1073741824 --use-slo -v --debug
       
       # - name: Compress artifact
       #   run: |
