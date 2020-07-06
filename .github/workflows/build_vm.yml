@@ -89,5 +89,5 @@ jobs:
           swift --os-auth-url ${{ secrets.SWIFT_AUTH_URL }} \
             --os-application-credential-id ${{ secrets.SWIFT_APP_CRED_ID }} \
             --os-application-credential-secret ${{ secrets.SWIFT_APP_CRED_SECRET }} \
-            --os-auth-type v3applicationcredential upload rose/vm/github packer/output-virtualbox-vm/rose-srv6-vmware.ova \
+            --os-auth-type v3applicationcredential upload rose/vm/github packer/output-virtualbox-vm-vmware/rose-srv6-vmware.ova \
             --object-name rose-srv6-vmware.ova  -v --debug
