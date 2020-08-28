@@ -1,0 +1,94 @@
+name: Build Rose VM
+
+on:
+  workflow_dispatch:
+    inputs:
+      git-ref:
+        description: Git Ref (Optional)    
+        required: false
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  packer:
+    #needs: retrive-base-box
+    runs-on: macos-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Install python-swiftclient and python-keystoneclient 
+        run: |
+          pip install python-swiftclient python-keystoneclient
+          
+      - name: Check swift upload a test file 
+        run: |
+          cd packer
+          swift --os-auth-url ${{ secrets.SWIFT_AUTH_URL }} \
+            --os-application-credential-id ${{ secrets.SWIFT_APP_CRED_ID }} \
+            --os-application-credential-secret ${{ secrets.SWIFT_APP_CRED_SECRET }} \
+            --os-auth-type v3applicationcredential upload rose/ xubuntu-vagrant-vbox-from-boxfile.json
+
+      - name: Download rose-srv6-xubuntu-base.box
+        run: |
+          cd packer
+          wget ${{ secrets.BASE_BOX_URL }}
+          ls -la
+          pwd
+
+      - name: Checkout tools rose-vm
+        uses: actions/checkout@v2
+        with:
+          repository: netgroup/rose-vm
+          path: rose-vm
+
+      - name: Run packer Build
+        run: |
+          pwd
+          cd packer
+          packer build xubuntu-vagrant-vbox-from-boxfile.json
+          ls -laR
+          mv output-vagrant/package.box ../rose-vm/vagrant-from-box-file/rosevm-xubuntu.box
+      
+      - name: Upload on SWIFT rosevm-xubuntu.box
+        run: |
+          swift --os-auth-url ${{ secrets.SWIFT_AUTH_URL }} \
+            --os-application-credential-id ${{ secrets.SWIFT_APP_CRED_ID }} \
+            --os-application-credential-secret ${{ secrets.SWIFT_APP_CRED_SECRET }} \
+            --os-auth-type v3applicationcredential upload rose/vm/github rose-vm/vagrant-from-box-file/rosevm-xubuntu.box \
+            --object-name rosevm-xubuntu.box  -v --debug
+
+      - name: Run Vagrant up and take a snapshot
+        run: |
+          cd rose-vm/vagrant-from-box-file/
+          vagrant up
+          vagrant halt
+          vagrant snapshot save default rose_snapshot
+
+      - name: Run packer build virtualbox ova
+        run: |
+          cd packer
+          packer build export-vbox.json
+
+      - name: Upload on SWIFT rose-srv6.ova
+        run: |
+          swift --os-auth-url ${{ secrets.SWIFT_AUTH_URL }} \
+            --os-application-credential-id ${{ secrets.SWIFT_APP_CRED_ID }} \
+            --os-application-credential-secret ${{ secrets.SWIFT_APP_CRED_SECRET }} \
+            --os-auth-type v3applicationcredential upload rose/vm/github packer/output-virtualbox-vm/rose-srv6.ova \
+            --object-name rose-srv6.ova  -v --debug
+      
+      - name: Run packer build vmware ova
+        run: |
+          cd packer
+          packer build export-vmware.json
+
+      - name: Upload on SWIFT rose-srv6-vmware.ova
+        run: |
+          swift --os-auth-url ${{ secrets.SWIFT_AUTH_URL }} \
+            --os-application-credential-id ${{ secrets.SWIFT_APP_CRED_ID }} \
+            --os-application-credential-secret ${{ secrets.SWIFT_APP_CRED_SECRET }} \
+            --os-auth-type v3applicationcredential upload rose/vm/github packer/output-virtualbox-vm-vmware/rose-srv6-vmware.ova \
+            --object-name rose-srv6-vmware.ova  -v --debug

@@ -17,7 +17,15 @@
     },
     {
       "type": "shell",
-      "script": "./start-xubuntu-vagrant-vbox-from-box.sh"
+      "script": "./start-xubuntu-vagrant-vbox-from-box-setup-user.sh"
+    },
+    {
+      "type": "shell",
+      "script": "./start-xubuntu-vagrant-vbox-from-box-setup-docker.sh"
+    },
+    {
+      "type": "shell",
+      "script": "./start-xubuntu-vagrant-vbox-from-box-setup.sh"
     }
   ]
 }

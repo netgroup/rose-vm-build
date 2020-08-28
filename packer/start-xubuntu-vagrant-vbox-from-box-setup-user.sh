@@ -1,6 +1,5 @@
 #!/bin/bash
 
-ROSE_USER="rose"
 
 sudo bash << EOF
 #disable auto upgrades
@@ -13,5 +12,5 @@ chmod 0440 /etc/sudoers.d/rose
 chmod +x /tmp/execute-xubuntu-vagrant-vbox-from-box.sh
 EOF
 
-sudo -i -u "$ROSE_USER" bash /tmp/execute-xubuntu-vagrant-vbox-from-box.sh
+
 

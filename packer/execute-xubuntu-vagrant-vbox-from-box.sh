@@ -1,7 +1,5 @@
 #!/bin/bash
 
-ROSE_USER="rose"
-
 HOME_DIR="$HOME"
 WORKSPACE_DIR="$HOME_DIR/workspace"
 ROSE_VM_SCRIPTS="$WORKSPACE_DIR/rose-vm/scripts"
@@ -10,60 +8,49 @@ ROSE_SYS_DIR="$HOME_DIR/.rose"
 ROSE_SYS_INITIAL_SETUP="$ROSE_SYS_DIR/rose-vm-build/initial-setup"
 VENV_PATH="$HOME/.envs"
 
-
 export TERM="linux"
 
 echo "HOME=$HOME"
 echo "HOME_DIR=$HOME_DIR"
 echo "WORKSPACE_DIR=$WORKSPACE_DIR"
 
-cd "$HOME_DIR" || { echo "Failure"; exit 1; }
+cd "$HOME_DIR" || {
+    echo "Failure"
+    exit 1
+}
 
 mkdir -p "$WORKSPACE_DIR"
 mkdir -p "$ROSE_SYS_DIR"
 
 # Update apt
+export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update
-
-sudo apt-get upgrade -y
+sudo apt-get-o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade -y
 
 sudo apt-get autoremove -y
 
-sudo apt-get install -y git-core
+sudo apt-get install -y git-core \
+    bison \
+    flex \
+    curl \
+    wget \
+    tcpdump \
+    debconf-utils \
+    python \
+    python3 \
+    python3-venv \
+    python3-pip \
+    vim \
+    mininet \
+    gdebi-core
 
 git config --global user.email "rose_project@rose_project.org"
 git config --global user.name "The ROSE project"
-
-# Install bison
-echo -e "\n\n#####################################"
-echo -e "\n-Installing bison"
-sudo apt-get install -y bison
-
-# Install flex
-echo -e "\n\n#####################################"
-echo -e "\n-Installing flex"
-sudo apt-get install -y flex
-
-# Install sudo
-echo -e "\n\n#####################################"
-echo -e "\n-Installing sudo"
-sudo apt-get install -y sudo
-
-# Install curl
-echo -e "\n\n#####################################"
-echo -e "\n-Installing curl"
-sudo apt-get install -y curl
-
-# Install wget
-echo -e "\n\n#####################################"
-echo -e "\n-Installing wget"
-sudo apt-get install -y wget
 
 # Install Chrome
 echo -e "\n\n#####################################"
 echo -e "\n-Installing Chrome"
 
-sudo apt-get install -y gdebi-core
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo gdebi -n google-chrome-stable_current_amd64.deb
 rm google-chrome-stable_current_amd64.deb
@@ -76,62 +63,16 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 sudo apt-get update
 sudo apt-get install -y sublime-text
 
-# Install tcpdump
-echo -e "\n\n#####################################"
-echo -e "\n-Installing tcpdump"
-sudo apt-get install -y tcpdump
-
-# Install debconf-utils
-echo -e "\n\n#####################################"
-echo -e "\n-Installing debconf-utils"
-sudo apt-get install -y debconf-utils
-
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
 
 # Install wireshark
 echo -e "\n\n#####################################"
 echo -e "\n-Installing wireshark"
-
 DEBIAN_FRONTEND=noninteractive sudo apt-get install -y wireshark
 
-
-# Install docker
 echo -e "\n\n#####################################"
-echo -e "\n-Installing docker"
-sudo apt-get install -y docker.io
-sudo systemctl enable --now docker
-sudo usermod -aG docker "$ROSE_USER"
-
-# Install python2
-echo -e "\n\n#####################################"
-echo -e "\n-Installing python2"
-sudo apt-get install -y python
-
-# Install python3
-echo -e "\n\n#####################################"
-echo -e "\n-Installing python3"
-sudo apt-get install -y python3
-
-# Install python3-venv
-echo -e "\n\n#####################################"
-echo -e "\n-Installing python3-venv"
-sudo apt-get install -y python3-venv
-
-# Install python3-pip
-echo -e "\n\n#####################################"
-echo -e "\n-Installing python3-pip"
-sudo apt-get install -y python3-pip
-
-# Install Mininet
-echo -e "\n\n#####################################"
-echo -e "\n-Installing Mininet"
-sudo apt-get install -y mininet
+echo -e "\n- Terminal config"
 sudo ln -s /usr/bin/xfce4-terminal /usr/bin/gnome-terminal
-
-# Install vim
-echo -e "\n\n#####################################"
-echo -e "\n-Installing vim"
-sudo apt-get install -y vim
 
 # Create virtual environments
 echo -e "\n\n#####################################"
@@ -149,16 +90,27 @@ echo -e "\n-Installing wheel"
 # in order to avoid annoying warnings "Can't follow non-constant source"
 #
 # shellcheck source=/dev/null
-source "$VENV_PATH"/rose-venv/bin/activate; pip install wheel; deactivate
+source "$VENV_PATH"/rose-venv/bin/activate
+pip install wheel
+deactivate
 # shellcheck source=/dev/null
-source "$VENV_PATH"/mininet-venv/bin/activate; pip install wheel; deactivate
+source "$VENV_PATH"/mininet-venv/bin/activate
+pip install wheel
+deactivate
 # shellcheck source=/dev/null
-source "$VENV_PATH"/controller-venv/bin/activate; pip install wheel; deactivate
+source "$VENV_PATH"/controller-venv/bin/activate
+pip install wheel
+deactivate
 # shellcheck source=/dev/null
-source "$VENV_PATH"/node-mgr-venv/bin/activate; pip install wheel; deactivate
+source "$VENV_PATH"/node-mgr-venv/bin/activate
+pip install wheel
+deactivate
 
 #cd $WORKSPACE_DIR
-cd "$HOME_DIR" || { echo "Failure"; exit 1; }
+cd "$HOME_DIR" || {
+    echo "Failure"
+    exit 1
+}
 
 # Install FRR
 echo -e "\n\n#####################################"
@@ -167,7 +119,10 @@ echo -e "\n-Installing FRR"
 # Install from source
 wget https://github.com/FRRouting/frr/archive/frr-7.3.1.zip
 unzip frr-7.3.1.zip
-cd frr-frr-7.3.1 || { echo "Failure"; exit 1; }
+cd frr-frr-7.3.1 || {
+    echo "Failure"
+    exit 1
+}
 sudo apt-get install -y dh-autoreconf
 ./bootstrap.sh
 
@@ -181,9 +136,9 @@ sudo apt-get install -y \
     git autoconf automake libtool make libreadline-dev texinfo \
     pkg-config libpam0g-dev libjson-c-dev bison flex python3-pytest \
     libc-ares-dev python3-dev libsystemd-dev python-ipaddress python3-sphinx \
-    install-info build-essential libsystemd-dev libsnmp-dev perl libcap-dev
+    install-info build-essential libsystemd-dev libsnmp-dev perl libcap-dev libyang-dev
 
-sudo apt-get install -y libyang-dev
+ls -la
 
 ./configure \
     --prefix=/usr \
@@ -230,10 +185,16 @@ sudo apt-get install -y libyang-dev
 make
 sudo make install
 
-cd .. || { echo "Failure"; exit 1; }
+cd .. || {
+    echo "Failure"
+    exit 1
+}
 rm frr-7.3.1.zip
 
-cd "$WORKSPACE_DIR" || { echo "Failure"; exit 1; }
+cd "$WORKSPACE_DIR" || {
+    echo "Failure"
+    exit 1
+}
 
 # during the build phase, the rose-vm repo is cloned with
 # the explicit clone command
@@ -245,7 +206,10 @@ cd "$WORKSPACE_DIR" || { echo "Failure"; exit 1; }
 echo -e "\n\n#####################################"
 echo -e "\n-Clone rose-vm repo"
 git clone https://github.com/netgroup/rose-vm.git
-cd rose-vm || { echo "Failure"; exit 1; }
+cd rose-vm || {
+    echo "Failure"
+    exit 1
+}
 git pull
 
 # Clone all other repos
@@ -260,6 +224,19 @@ echo -e "\n\n#####################################"
 echo -e "\n-Initial setup of ROSE desktop environment"
 find "$ROSE_SYS_INITIAL_SETUP" -type f -name "*.sh" -exec chmod +x {} \;
 "$ROSE_SYS_INITIAL_SETUP/initial-desktop-setup.sh"
+
+echo -e "\n\n#####################################"
+echo -e "\n-setup_controller"
+"$ROSE_VM_SCRIPTS/setup_controller.sh"
+echo -e "\n\n#####################################"
+echo -e "\n-setup_node_mgr"
+"$ROSE_VM_SCRIPTS/setup_node_mgr.sh"
+echo -e "\n\n#####################################"
+echo -e "\n-setup_srv6_tutorial"
+"$ROSE_VM_SCRIPTS/setup_srv6_tutorial.sh"
+echo -e "\n\n#####################################"
+echo -e "\n-build_deploy_docker_stack"
+"$ROSE_VM_SCRIPTS/build_deploy_docker_stack.sh"
 
 # End of setup
 echo -e "\n\n#####################################"
