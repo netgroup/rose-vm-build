@@ -81,6 +81,7 @@ python3 -m venv "$VENV_PATH"/rose-venv
 python3 -m venv "$VENV_PATH"/mininet-venv
 python3 -m venv "$VENV_PATH"/controller-venv
 python3 -m venv "$VENV_PATH"/node-mgr-venv
+python3 -m venv "$VENV_PATH"/srv6-apps-venv
 
 # Install wheel package
 echo -e "\n\n#####################################"
@@ -103,6 +104,10 @@ pip install wheel
 deactivate
 # shellcheck source=/dev/null
 source "$VENV_PATH"/node-mgr-venv/bin/activate
+pip install wheel
+deactivate
+# shellcheck source=/dev/null
+source "$VENV_PATH"/srv6-apps-venv/bin/activate
 pip install wheel
 deactivate
 
