@@ -15,7 +15,7 @@
 
 
 #Virtualbox guest additions version
-VBOX_GA_VER="6.1.6"
+VBOX_GA_VER="6.1.16"
 
 
 apt-get update
