@@ -15,6 +15,7 @@
 
 
 #Virtualbox guest additions version
+#check latest version on https://download.virtualbox.org/virtualbox/
 VBOX_GA_VER="6.1.16"
 
 
