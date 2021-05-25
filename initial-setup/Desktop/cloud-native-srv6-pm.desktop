@@ -1,10 +1,10 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=update
+Name=Cloud-Native\nSRv6-PM
 Comment=
-Exec=/home/rose/workspace/rose-vm/scripts/update_all.sh clone_repos
-Icon=/home/rose/.rose/rose-vm-build/initial-setup/icons-images/rose-icon-download.png
+Exec=/home/rose/workspace/rose-vm/scripts/cloud_native_srv6_pm.sh
+Icon=/home/rose/.rose/rose-vm-build/initial-setup/icons-images/cloud-native-srv6-pm
 Path=
 Terminal=true
 StartupNotify=false
