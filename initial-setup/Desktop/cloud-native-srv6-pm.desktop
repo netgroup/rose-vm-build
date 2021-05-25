@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=update
+Comment=
+Exec=/home/rose/workspace/rose-vm/scripts/update_all.sh clone_repos
+Icon=/home/rose/.rose/rose-vm-build/initial-setup/icons-images/rose-icon-download.png
+Path=
+Terminal=true
+StartupNotify=false

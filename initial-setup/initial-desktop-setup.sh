@@ -33,6 +33,9 @@ chmod +x "$HOME_DIR/Desktop/check-status.desktop"
 cp Desktop/wireshark.desktop "$HOME_DIR/Desktop"
 chmod +x "$HOME_DIR/Desktop/wireshark.desktop"
 
+cp Desktop/cloud-native-srv6-pm.desktop "$HOME_DIR/Desktop"
+chmod +x "$HOME_DIR/Desktop/cloud-native-srv6-pm.desktop"
+
 cd "$HOME_DIR" || { echo "Failure"; exit 1; }
 
 ln -s "$WORKSPACE_DIR/rose-vm/vm-docs/ROSE-VM-README.txt" "$HOME_DIR/Desktop/README.txt"
