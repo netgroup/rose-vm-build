@@ -82,6 +82,7 @@ jobs:
 
       - name: Upload on SWIFT rose-srv6.ova
         run: |
+          export PATH="~/venv/bin/:$PATH"
           swift --os-auth-url ${{ secrets.SWIFT_AUTH_URL }} \
             --os-application-credential-id ${{ secrets.SWIFT_APP_CRED_ID }} \
             --os-application-credential-secret ${{ secrets.SWIFT_APP_CRED_SECRET }} \
@@ -95,6 +96,7 @@ jobs:
 
       - name: Upload on SWIFT rose-srv6-vmware.ova
         run: |
+          export PATH="~/venv/bin/:$PATH"
           swift --os-auth-url ${{ secrets.SWIFT_AUTH_URL }} \
             --os-application-credential-id ${{ secrets.SWIFT_APP_CRED_ID }} \
             --os-application-credential-secret ${{ secrets.SWIFT_APP_CRED_SECRET }} \
