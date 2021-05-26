@@ -239,9 +239,9 @@ echo -e "\n-setup_node_mgr"
 echo -e "\n\n#####################################"
 echo -e "\n-setup_srv6_tutorial"
 "$ROSE_VM_SCRIPTS/setup_srv6_tutorial.sh"
-echo -e "\n\n#####################################"
-echo -e "\n-build_deploy_docker_stack"
-"$ROSE_VM_SCRIPTS/build_deploy_docker_stack.sh"
+#echo -e "\n\n#####################################"
+#echo -e "\n-build_deploy_docker_stack"
+#"$ROSE_VM_SCRIPTS/build_deploy_docker_stack.sh"
 
 # End of setup
 echo -e "\n\n#####################################"
