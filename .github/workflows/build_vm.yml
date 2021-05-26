@@ -26,6 +26,7 @@ jobs:
       - name: Check swift upload a test file 
         run: |
           cd packer
+          swift -h
           swift --os-auth-url ${{ secrets.SWIFT_AUTH_URL }} \
             --os-application-credential-id ${{ secrets.SWIFT_APP_CRED_ID }} \
             --os-application-credential-secret ${{ secrets.SWIFT_APP_CRED_SECRET }} \
