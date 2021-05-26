@@ -21,12 +21,17 @@ jobs:
 
       - name: Install python-swiftclient and python-keystoneclient 
         run: |
-          virtualenv venv
+          brew install python3
+          pip3 install virtualenv
+          cd ~
+          virtualenv -p python3 venv
+          pwd
           source venv/bin/activate
           pip install python-swiftclient python-keystoneclient
           
       - name: Check swift upload a test file 
         run: |
+          export PATH="~/venv/bin/:$PATH"
           cd packer
           swift -h
           swift --os-auth-url ${{ secrets.SWIFT_AUTH_URL }} \
