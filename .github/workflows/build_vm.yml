@@ -22,7 +22,7 @@ jobs:
       - name: Install python-swiftclient and python-keystoneclient 
         run: |
           virtualenv venv
-          source venc/bin/activate
+          source venv/bin/activate
           pip install python-swiftclient python-keystoneclient
           
       - name: Check swift upload a test file 
