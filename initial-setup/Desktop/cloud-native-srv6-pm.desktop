@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Cloud-Native\nSRv6-PM
+Comment=
+Exec=/home/rose/workspace/rose-vm/scripts/cloud_native_srv6_pm.sh
+Icon=/home/rose/.rose/rose-vm-build/initial-setup/icons-images/srv6-pm-icon.png
+Path=
+Terminal=true
+StartupNotify=false
