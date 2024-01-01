@@ -25,7 +25,7 @@ mkdir -p "$ROSE_SYS_DIR"
 # Update apt
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update
-sudo apt-get-o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade -y
+sudo apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade -y
 
 sudo apt-get autoremove -y
 
