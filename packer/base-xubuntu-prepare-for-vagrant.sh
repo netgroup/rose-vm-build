@@ -4,6 +4,7 @@
 # This is the first script executed after the installation from .iso
 # It prepares the VM for Vagrant and Virtualbox, intalls and configure ssh
 # installs VboxGuestAddition
+# installs linux-headers-"$(uname -r)" gcc build-essential dkms
 
 # It needs to be stored in:
 # https://raw.githubusercontent.com/netgroup/rose-vm-build/master/packer/base-xubuntu-prepare-for-vagrant.sh
