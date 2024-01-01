@@ -29,7 +29,7 @@ sudo apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-co
 
 sudo apt-get autoremove -y
 
-sudo apt-get install -y git-core \
+sudo apt-get install -y git \
     bison \
     flex \
     curl \
